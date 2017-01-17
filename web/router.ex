@@ -7,5 +7,7 @@ defmodule CreateReactAppPhoenixExample.Router do
 
   scope "/api", CreateReactAppPhoenixExample do
     pipe_through :api
+
+    resources "/food", FoodController, only: [:index]
   end
 end

@@ -7,19 +7,24 @@ defmodule CreateReactAppPhoenixExample.FoodView do
 
   def render("food.json", %{food: food}) do
     %{description: food.description,
-      fat_g: food.fa_sat_g,
+      fat_g: calc_fat_g(food),
       kcal: food.kcal,
       protein_g: food.protein_g,
       carbohydrate_g: food.carbohydrate_g}
   end
 
-  defp calc_fat_g(food) do
-    # Some values may be nil, TODO improve
-    fa_sat_g = food.fa_sat_g || 0
-    fa_mono_g = food.fa_mono_g || 0
-    fa_poly_g = food.fa_poly_g || 0
-    (fa_sat_g + fa_mono_g + fa_poly_g)
-    |> Kernel./(1) # always return float
+  def calc_fat_g(%{fa_sat_g:  sg,
+                   fa_mono_g: mg,
+                   fa_poly_g: pg}) do
+    sg = sg || 0
+    mg = mg || 0
+    pg = pg || 0
+    (sg + mg + pg)
+    |> to_float()
     |> Float.round(2)
+  end
+
+  defp to_float(n) do
+    n / 1
   end
 end

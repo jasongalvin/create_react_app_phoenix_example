@@ -16,7 +16,7 @@ cd ..
 forego start
 ```
 
-Now you can visit [`localhost:5000`](http://localhost:5000) from your browser.
+Now you can visit [`localhost:3001`](http://localhost:3001) from your browser.
 
 ## Notes
 
